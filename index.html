@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Pro Writer</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 50px auto; }
+        #chat-area { height: 400px; overflow-y: scroll; border: 1px solid #ccc; padding: 10px; }
+        #user-input { width: 80%; padding: 10px; }
+        #send-button { padding: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Chat with Academic Pro Writer</h1>
+    <div id="chat-area"></div>
+    <input type="text" id="user-input" placeholder="Type your message here...">
+    <button id="send-button">Send</button>
+
+    <script>
+        document.getElementById('send-button').addEventListener('click', async () => {
+            const userInput = document.getElementById('user-input').value;
+            if (!userInput) return;
+            const chatArea = document.getElementById('chat-area');
+
+            // Display the user's message
+            chatArea.innerHTML += `<p><strong>You:</strong> ${userInput}</p>`;
+            document.getElementById('user-input').value = '';
+
+            // Here you would normally make an API call to your GPT model
+            const botResponse = await fakeApiCall(userInput);
+            chatArea.innerHTML += `<p><strong>Bot:</strong> ${botResponse}</p>`;
+            chatArea.scrollTop = chatArea.scrollHeight;
+        });
+
+        async function fakeApiCall(input) {
+            // Simulate a response from your GPT model
+            return new Promise(resolve => {
+                setTimeout(() => resolve("This is a simulated response."), 1000);
+            });
+        }
+    </script>
+</body>
+</html>
